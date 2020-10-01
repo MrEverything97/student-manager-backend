@@ -1,10 +1,8 @@
 package studentmanager.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+
+import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 public class Student {
@@ -12,6 +10,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(unique=true)
     private String studentCode;
     private Date dateOfBirth;
     private int phoneNumber;

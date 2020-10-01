@@ -18,7 +18,7 @@ public class StudentRestController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<List<Student>> getStudentList() {
         List<Student> studentList;
         studentList = studentService.findAll();
@@ -32,11 +32,7 @@ public class StudentRestController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<Student> findStudentById(@PathVariable Long id) {
         Optional<Student> studentOptional = studentService.findById(id);
-        if (studentOptional.isPresent()) {
-            return new ResponseEntity<Student>(studentOptional.get(), HttpStatus.OK);
-        }else {
-            return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
-        }
+        return studentOptional.map(student -> new ResponseEntity<>(student, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
     }
 
@@ -69,7 +65,7 @@ public class StudentRestController {
             return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
         } else {
             studentService.delete(id);
-            return new ResponseEntity<Student>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<Student>(HttpStatus.OK);
         }
     }
 }
