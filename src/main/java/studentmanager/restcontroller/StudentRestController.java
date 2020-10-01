@@ -68,4 +68,13 @@ public class StudentRestController {
             return new ResponseEntity<Student>(HttpStatus.OK);
         }
     }
+    @GetMapping("/find-by-name/{name}")
+    public ResponseEntity<List<Student>> findByName(@PathVariable String name){
+        List<Student> studentList = studentService.findByName(name);
+        if (studentList.isEmpty()){
+            return new ResponseEntity<List<Student>>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<List<Student>>(studentList,HttpStatus.OK);
+        }
+    }
 }
