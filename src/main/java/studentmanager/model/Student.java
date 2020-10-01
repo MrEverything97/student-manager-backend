@@ -1,4 +1,4 @@
-package com.phuongnam.model;
+package studentmanager.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
