@@ -1,17 +1,22 @@
 package studentmanager.model;
 
 
-import javax.persistence.*;
-import java.sql.Date;
 
-@Entity
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+;import java.util.Date;
+
+@Document(indexName = "index2", type = "customer")
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Column(unique=true)
     private String studentCode;
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "uuuu-MM-dd'T'HH:mm:ss.SSSZZ")
     private Date dateOfBirth;
     private int phoneNumber;
 

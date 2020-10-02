@@ -14,27 +14,37 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
     @Override
-    public List<Student> findAll() {
+    public Iterable<Student> findAll() {
         return studentRepository.findAll();
     }
 
     @Override
-    public Optional<Student> findById(Long id) {
-        return studentRepository.findById(id);
+    public void saveAll(List<Student> studentList) {
+        studentRepository.saveAll(studentList);
     }
 
     @Override
-    public void save(Student student) {
-        studentRepository.save(student);
+    public void deleteAll() {
+        studentRepository.deleteAll();
     }
 
-    @Override
-    public void delete(Long id) {
-        studentRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Student> findByName(String name) {
-        return studentRepository.findByNameContaining(name);
-    }
+//    @Override
+//    public Optional<Student> findById(Long id) {
+//        return studentRepository.findById(id);
+//    }
+//
+//    @Override
+//    public void save(Student student) {
+//        studentRepository.save(student);
+//    }
+//
+//    @Override
+//    public void delete(Long id) {
+//        studentRepository.deleteById(id);
+//    }
+//
+//    @Override
+//    public List<Student> findByName(String name) {
+//        return studentRepository.findByNameContaining(name);
+//    }
 }
