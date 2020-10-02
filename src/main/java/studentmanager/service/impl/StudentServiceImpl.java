@@ -14,18 +14,33 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
     @Override
-    public Iterable<Student> findAll() {
-        return studentRepository.findAll();
+    public List<Student> findAll() {
+        return studentRepository.findAllByOrderById();
     }
 
     @Override
-    public void saveAll(List<Student> studentList) {
-        studentRepository.saveAll(studentList);
+    public void save(Student student) {
+        studentRepository.save(student);
     }
 
     @Override
     public void deleteAll() {
         studentRepository.deleteAll();
+    }
+
+    @Override
+    public List<Student> findByName(String name) {
+        return studentRepository.findByName(name);
+    }
+
+    @Override
+    public Optional<Student> findById(Long id) {
+        return studentRepository.findById(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        studentRepository.deleteById(id);
     }
 
 //    @Override
